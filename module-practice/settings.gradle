@@ -1,0 +1,4 @@
+rootProject.name = 'module-practice'
+include 'charging-station-core'
+include 'charging-station-admin'
+include 'charging-station-user'

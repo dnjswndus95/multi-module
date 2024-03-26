@@ -1,0 +1,63 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+allprojects {
+	sourceCompatibility = '17'
+	targetCompatibility = '17'
+
+	repositories {
+		mavenCentral()
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	dependencies {
+		implementation 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.2'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.kafka:spring-kafka'
+		implementation 'org.springframework.boot:spring-boot-starter-web-services'
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	}
+}
+
+/*project(":charging-station-admin") {
+	bootJar {enabled = true}
+	jar {enabled = false}
+
+	dependencies {
+		compile project(":charging-station-admin")
+	}
+}
+
+project(":charging-station-user") {
+	bootJar {enabled = true}
+	jar {enabled = false}
+}*/
