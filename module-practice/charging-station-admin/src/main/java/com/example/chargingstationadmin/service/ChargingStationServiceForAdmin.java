@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class ChargingStationServiceForAdmin {
 
     private final ChargingStationCoreService chargingStationCoreService;
+    // 주석 추가
 
     public ChargingStationDetailInfo.responseDto getStationInfo(ChargingStationDetailInfo.requestDto requestDto) {
         return this.chargingStationCoreService.getStationInfo(requestDto);
