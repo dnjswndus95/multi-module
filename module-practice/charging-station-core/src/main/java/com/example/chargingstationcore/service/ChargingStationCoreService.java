@@ -20,14 +20,15 @@ public class ChargingStationCoreService {
 
     public ChargingStationDetailInfo.responseDto getStationInfo(ChargingStationDetailInfo.requestDto requestDto) {
         System.out.println("===========> " + requestDto.getChargingStationId());
-        Optional<ChargingStation> chargingStation = this.chargingStationRepository
-                .findById(UUID.fromString(requestDto.getChargingStationId()));
+        ChargingStation chargingStation = this.chargingStationRepository
+                .findById(UUID.fromString(requestDto.getChargingStationId()))
+                .orElseThrow(() -> new IllegalArgumentException("zz"));
 
         return ChargingStationDetailInfo.responseDto
                 .builder()
-                .chargingStationId(chargingStation.get().getId().toString())
-                .chargingStationName(chargingStation.get().getName())
-                .createDate(chargingStation.get().getCreateDate())
+                .chargingStationId(chargingStation.getId().toString())
+                .chargingStationName(chargingStation.getName())
+                .createDate(chargingStation.getCreateDate())
                 .build();
     }
 }
